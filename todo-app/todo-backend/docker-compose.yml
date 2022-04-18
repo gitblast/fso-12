@@ -1,0 +1,7 @@
+version: "3.8" # Version 3.8 is quite new and should work
+
+services:
+  app:
+    build: .
+    ports:
+      - 3000:3000

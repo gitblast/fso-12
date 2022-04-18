@@ -1,0 +1,28 @@
+services:
+  front:
+    build:
+      context: ./fso-graphql-front
+      dockerfile: dev.Dockerfile
+    volumes:
+      - ./fso-graphql-front:/usr/src/app
+    container_name: fullstack-front
+    stdin_open: true
+  back:
+    build:
+      context: ./fso-graphql-back
+      dockerfile: dev.Dockerfile
+    volumes:
+      - ./fso-graphql-back:/usr/src/app
+    ports:
+      - 4000:4000
+    container_name: fullstack-back
+  nginx:
+    image: nginx:1.20.1
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+    ports:
+      - 8080:80
+    container_name: nginx-reverse-proxy
+    depends_on:
+      - front
+      - back

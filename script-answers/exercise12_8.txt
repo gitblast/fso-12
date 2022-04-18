@@ -1,0 +1,76 @@
+Script started on 2022-03-26 16:19:06+02:00 [TERM="xterm-256color" TTY="/dev/pts/1" COLUMNS="140" LINES="34"]
+]0;jarkko@desktop: ~/koodi/opiskelu/fso/part12[01;32mjarkko@desktop[00m:[01;34m~/koodi/opiskelu/fso/part12[00m$ dock[K[K[K[Kcd todo-app/todo-backend/
+]0;jarkko@desktop: ~/koodi/opiskelu/fso/part12/todo-app/todo-backend[01;32mjarkko@desktop[00m:[01;34m~/koodi/opiskelu/fso/part12/todo-app/todo-backend[00m$ ls
+app.js  docker-compose.dev.yml  Dockerfile  [0m[01;34mnode_modules[0m  package-lock.json  [01;34mredis[0m   [01;34mutil[0m
+[01;34mbin[0m     docker-compose.yml      [01;34mmongo[0m       package.json  README.md          [01;34mroutes[0m
+]0;jarkko@desktop: ~/koodi/opiskelu/fso/part12/todo-app/todo-backend[01;32mjarkko@desktop[00m:[01;34m~/koodi/opiskelu/fso/part12/todo-app/todo-backend[00m$ docker-compose -f docker-compose.dev.yml up .[K-d
+[33mWARNING[0m: Found orphan containers (todo-backend_app_1) for this project. If you removed or renamed this service in your compose file, you can run this command with the --remove-orphans flag to clean it up.
+Starting todo-backend_mongo_1 ... 
+[1A[2KStarting todo-backend_mongo_1 ... [32mdone[0m[1B]0;jarkko@desktop: ~/koodi/opiskelu/fso/part12/todo-app/todo-backend[01;32mjarkko@desktop[00m:[01;34m~/koodi/opiskelu/fso/part12/todo-app/todo-backend[00m$ docker ps -a
+CONTAINER ID   IMAGE              COMMAND                  CREATED             STATUS                           PORTS                     NAMES
+832fd8f0c26e   mongo              "docker-entrypoint.s…"   22 minutes ago      Up 11 seconds                    0.0.0.0:3456->27017/tcp   todo-backend_mongo_1
+853d92568bae   todo-backend_app   "docker-entrypoint.s…"   37 minutes ago      Exited (137) 37 minutes ago                                todo-backend_app_1
+b2089c2afb8c   todo-backend       "docker-entrypoint.s…"   45 minutes ago      Exited (137) 44 minutes ago                                elastic_goldwasser
+934895eeb440   todo-backend       "docker-entrypoint.s…"   46 minutes ago      Exited (137) 46 minutes ago                                sharp_shamir
+083429bf6017   express-server     "docker-entrypoint.s…"   51 minutes ago      Exited (137) 51 minutes ago                                cool_elgamal
+e07d7b0fe7d5   1a77deb20c91       "docker-entrypoint.s…"   55 minutes ago      Exited (137) 53 minutes ago                                amazing_mclean
+dda712ee61d4   bd46474547d8       "docker-entrypoint.s…"   About an hour ago   Exited (126) About an hour ago                             elated_wiles
+0fa1c45e7126   node:16            "docker-entrypoint.s…"   About an hour ago   Exited (0) 53 minutes ago                                  hello-node
+4256b6efe4ee   hello-world        "/hello"                 3 hours ago         Exited (0) 3 hours ago                                     trusting_saha
+]0;jarkko@desktop: ~/koodi/opiskelu/fso/part12/todo-app/todo-backend[01;32mjarkko@desktop[00m:[01;34m~/koodi/opiskelu/fso/part12/todo-app/todo-backend[00m$ docker [K exec -it todo-backend_mongo_1 bash
+]0;root@832fd8f0c26e: /root@832fd8f0c26e:/# mongo -u root -p pass    example
+MongoDB shell version v5.0.6
+connecting to: mongodb://127.0.0.1:27017/?compressors=disabled&gssapiServiceName=mongodb
+Implicit session: session { "id" : UUID("fd46c5f0-b3f0-41f6-a3de-ab316a868a10") }
+MongoDB server version: 5.0.6
+================
+Warning: the "mongo" shell has been superseded by "mongosh",
+which delivers improved usability and compatibility.The "mongo" shell has been deprecated and will be removed in
+an upcoming release.
+For installation instructions, see
+https://docs.mongodb.com/mongodb-shell/install/
+================
+---
+The server generated these startup warnings when booting: 
+        2022-03-26T14:19:42.090+00:00: Using the XFS filesystem is strongly recommended with the WiredTiger storage engine. See http://dochub.mongodb.org/core/prodnotes-filesystem
+---
+---
+        Enable MongoDB's free cloud-based monitoring service, which will then receive and display
+        metrics about your deployment (disk utilization, CPU, operation statistics, etc).
+
+        The monitoring data will be available on a MongoDB website with a unique URL accessible to you
+        and anyone you share the URL with. MongoDB may use this information to make product
+        improvements and to suggest MongoDB products and deployment options to you.
+
+        To enable free monitoring, run the following command: db.enableFreeMonitoring()
+        To permanently disable this reminder, run the following command: db.disableFreeMonitoring()
+---
+> show dbs[3G[Jshow dbs[11G
+admin         0.000GB
+config        0.000GB
+local         0.000GB
+the_database  0.000GB
+> use the_database[3G[Juse the_database[19G
+switched to db the_database
+> show collections[3G[Jshow collections[19G
+todos
+> db.todos.find({})[3G[Jdb.todos.find({})[20G
+{ "_id" : ObjectId("623f1bd4cc70b0c5d01ef850"), "text" : "Write code", "done" : true }
+{ "_id" : ObjectId("623f1bd4cc70b0c5d01ef851"), "text" : "Learn about containers", "done" : false }
+> db.todos.inserto[3G[Jdb.todos.insert[18GOne()[3G[Jdb.todos.insertOne[1;34m([0m)[22G[3G[Jdb.todos.insertOne([1;34m{[0m)[23G[3G[Jdb.todos.insertOne[1;34m([0m{])[24G[3G[Jdb.todos.insertOne([1;34m{[0m)[23G[3G[Jdb.todos.insertOne[1;34m([0m{})[24G[3G[Jdb.todos.insertOne([1;34m{[0m})[23G[3G[Jdb.todos.insertOne([1;34m{[0m })[24G[3G[Jdb.todos.insertOne([1;34m{[0m  })[25G[3G[Jdb.todos.insertOne({  })[24G[3G[Jdb.todos.insertOne({  })[23G[3G[Jdb.todos.insertOne({  })[24G[3G[Jdb.todos.insertOne({ t })[25G[3G[Jdb.todos.insertOne({ te })[26G[3G[Jdb.todos.insertOne({ tex })[27G[3G[Jdb.todos.insertOne({ text })[28G[3G[Jdb.todos.insertOne({ tex })[27G[3G[Jdb.todos.insertOne({ te })[26G[3G[Jdb.todos.insertOne({ t })[25G[3G[Jdb.todos.insertOne({  })[24G[3G[Jdb.todos.insertOne({ " })[25G[3G[Jdb.todos.insertOne({ "" })[26G[3G[Jdb.todos.insertOne({ "" })[25G[3G[Jdb.todos.insertOne({ "t" })[26G[3G[Jdb.todos.insertOne({ "te" })[27G[3G[Jdb.todos.insertOne({ "tex" })[28G[3G[Jdb.todos.insertOne({ "text" })[29G[3G[Jdb.todos.insertOne({ "text" })[30G[3G[Jdb.todos.insertOne({ "text": })[31G[3G[Jdb.todos.insertOne({ "text":  })[32G[3G[Jdb.todos.insertOne({ "text": " })[33G[3G[Jdb.todos.insertOne({ "text": "" })[34G[3G[Jdb.todos.insertOne({ "text": "" })[33G[3G[Jdb.todos.insertOne({ "text": "I" })[34G[3G[Jdb.todos.insertOne({ "text": "In" })[35G[3G[Jdb.todos.insertOne({ "text": "Inc" })[36G[3G[Jdb.todos.insertOne({ "text": "Incr" })[37G[3G[Jdb.todos.insertOne({ "text": "Incre" })[38G[3G[Jdb.todos.insertOne({ "text": "Increa" })[39G[3G[Jdb.todos.insertOne({ "text": "Increas" })[40G[3G[Jdb.todos.insertOne({ "text": "Increase" })[41G[3G[Jdb.todos.insertOne({ "text": "Increase " })[42G[3G[Jdb.todos.insertOne({ "text": "Increase t" })[43G[3G[Jdb.todos.insertOne({ "text": "Increase th" })[44G[3G[Jdb.todos.insertOne({ "text": "Increase the" })[45G[3G[Jdb.todos.insertOne({ "text": "Increase the " })[46G[3G[Jdb.todos.insertOne({ "text": "Increase the n" })[47G[3G[Jdb.todos.insertOne({ "text": "Increase the nu" })[48G[3G[Jdb.todos.insertOne({ "text": "Increase the num" })[49G[3G[Jdb.todos.insertOne({ "text": "Increase the numb" })[50G[3G[Jdb.todos.insertOne({ "text": "Increase the numbe" })[51G[3G[Jdb.todos.insertOne({ "text": "Increase the number" })[52G[3G[Jdb.todos.insertOne({ "text": "Increase the number " })[53G[3G[Jdb.todos.insertOne({ "text": "Increase the number o" })[54G[3G[Jdb.todos.insertOne({ "text": "Increase the number of" })[55G[3G[Jdb.todos.insertOne({ "text": "Increase the number of " })[56G[3G[Jdb.todos.insertOne({ "text": "Increase the number of t" })[57G[3G[Jdb.todos.insertOne({ "text": "Increase the number of to" })[58G[3G[Jdb.todos.insertOne({ "text": "Increase the number of too" })[59G[3G[Jdb.todos.insertOne({ "text": "Increase the number of tool" })[60G[3G[Jdb.todos.insertOne({ "text": "Increase the number of tools" })[61G[3G[Jdb.todos.insertOne({ "text": "Increase the number of tools " })[62G[3G[Jdb.todos.insertOne({ "text": "Increase the number of tools i" })[63G[3G[Jdb.todos.insertOne({ "text": "Increase the number of tools in" })[64G[3G[Jdb.todos.insertOne({ "text": "Increase the number of tools in " })[65G[3G[Jdb.todos.insertOne({ "text": "Increase the number of tools in m" })[66G[3G[Jdb.todos.insertOne({ "text": "Increase the number of tools in my" })[67G[3G[Jdb.todos.insertOne({ "text": "Increase the number of tools in my " })[68G[3G[Jdb.todos.insertOne({ "text": "Increase the number of tools in my t" })[69G[3G[Jdb.todos.insertOne({ "text": "Increase the number of tools in my to" })[70G[3G[Jdb.todos.insertOne({ "text": "Increase the number of tools in my too" })[71G[3G[Jdb.todos.insertOne({ "text": "Increase the number of tools in my tool" })[72G[3G[Jdb.todos.insertOne({ "text": "Increase the number of tools in my toolb" })[73G[3G[Jdb.todos.insertOne({ "text": "Increase the number of tools in my toolbe" })[74G[3G[Jdb.todos.insertOne({ "text": "Increase the number of tools in my toolbel" })[75G[3G[Jdb.todos.insertOne({ "text": "Increase the number of tools in my toolbelt" })[76G[3G[Jdb.todos.insertOne({ "text": "Increase the number of tools in my toolbelt" })[77G[3G[Jdb.todos.insertOne({ "text": "Increase the number of tools in my toolbelt", })[78G[3G[Jdb.todos.insertOne({ "text": "Increase the number of tools in my toolbelt",  })[79G[3G[Jdb.todos.insertOne({ "text": "Increase the number of tools in my toolbelt", " })[80G[3G[Jdb.todos.insertOne({ "text": "Increase the number of tools in my toolbelt", "d })[81G[3G[Jdb.todos.insertOne({ "text": "Increase the number of tools in my toolbelt", "do })[82G[3G[Jdb.todos.insertOne({ "text": "Increase the number of tools in my toolbelt", "don })[83G[3G[Jdb.todos.insertOne({ "text": "Increase the number of tools in my toolbelt", "done })[84G[3G[Jdb.todos.insertOne({ "text": "Increase the number of tools in my toolbelt", "done" })[85G[3G[Jdb.todos.insertOne({ "text": "Increase the number of tools in my toolbelt", "done": })[86G[3G[Jdb.todos.insertOne({ "text": "Increase the number of tools in my toolbelt", "done":  })[87G[3G[Jdb.todos.insertOne({ "text": "Increase the number of tools in my toolbelt", "done": " })[88G[3G[Jdb.todos.insertOne({ "text": "Increase the number of tools in my toolbelt", "done": "f })[89G[3G[Jdb.todos.insertOne({ "text": "Increase the number of tools in my toolbelt", "done": "fa })[90G[3G[Jdb.todos.insertOne({ "text": "Increase the number of tools in my toolbelt", "done": "f })[89G[3G[Jdb.todos.insertOne({ "text": "Increase the number of tools in my toolbelt", "done": " })[88G[3G[Jdb.todos.insertOne({ "text": "Increase the number of tools in my toolbelt", "done":  })[87G[3G[Jdb.todos.insertOne({ "text": "Increase the number of tools in my toolbelt", "done": f })[88G[3G[Jdb.todos.insertOne({ "text": "Increase the number of tools in my toolbelt", "done": fa })[89G[3G[Jdb.todos.insertOne({ "text": "Increase the number of tools in my toolbelt", "done": fal })[90G[3G[Jdb.todos.insertOne({ "text": "Increase the number of tools in my toolbelt", "done": fals })[91G[3G[Jdb.todos.insertOne({ "text": "Increase the number of tools in my toolbelt", "done": false })[92G[3G[Jdb.todos.insertOne({ "text": "Increase the number of tools in my toolbelt", "done": false })[95G
+{
+	"acknowledged" : true,
+	"insertedId" : ObjectId("623f219be56b415e63e5f00d")
+}
+> [3G[Jdb.todos.insertOne({ "text": "Increase the number of tools in my toolbelt", "done": false })[95G[3G[Jdb.todos.find({})[20G[3G[Jdb.todos.find({})[20G
+{ "_id" : ObjectId("623f1bd4cc70b0c5d01ef850"), "text" : "Write code", "done" : true }
+{ "_id" : ObjectId("623f1bd4cc70b0c5d01ef851"), "text" : "Learn about containers", "done" : false }
+{ "_id" : ObjectId("623f219be56b415e63e5f00d"), "text" : "Increase the number of tools in my toolbelt", "done" : false }
+> [3G[J[3G^C
+bye
+]0;root@832fd8f0c26e: /root@832fd8f0c26e:/# exit
+exit
+]0;jarkko@desktop: ~/koodi/opiskelu/fso/part12/todo-app/todo-backend[01;32mjarkko@desktop[00m:[01;34m~/koodi/opiskelu/fso/part12/todo-app/todo-backend[00m$ exit
+exit
+
+Script done on 2022-03-26 16:22:38+02:00 [COMMAND_EXIT_CODE="0"]
